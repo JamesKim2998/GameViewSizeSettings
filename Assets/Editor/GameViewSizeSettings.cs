@@ -55,6 +55,35 @@ namespace Syy.GameViewSizeControl
             {
                 scrollPosition = scroll.scrollPosition;
                 EditorGUILayout.Space();
+                EditorGUILayout.LabelField("■■■REGISTERED■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■", EditorStyles.boldLabel);
+                EditorGUILayout.Space();
+                if(customSizes.Length == 0)
+                {
+                    EditorGUILayout.LabelField("Nothing registered custom GameViewSize");
+                }
+                foreach (var gameViewSize in customSizes)
+                {
+                    using (new EditorGUILayout.VerticalScope("ShurikenModuleTitle"))
+                    {
+                        using (new EditorGUILayout.HorizontalScope())
+                        {
+                            if (GUILayout.Button("Remove", EditorStyles.miniButton, GUILayout.Width(55)))
+                            {
+                                removeTargets.Add(gameViewSize);
+                            }
+                            if(GUILayout.Button(gameViewSize.baseText, EditorStyles.label, GUILayout.Width(300)))
+                            {
+                                GameViewSizeHelper.ChangeGameViewSize(selectedTab, gameViewSize);
+                            }
+                            // EditorGUILayout.LabelField(gameViewSize.baseText);
+                            EditorGUILayout.LabelField(string.Format("{0} × {1}", gameViewSize.width, gameViewSize.height));
+                        }
+                    }
+                }
+
+                EditorGUILayout.Space();
+                EditorGUILayout.Space();
+                EditorGUILayout.Space();
                 using (new EditorGUILayout.HorizontalScope())
                 {
                     EditorGUILayout.LabelField("■■■PRESET■■■■■■■■■■■■■■■■■■■■■■■■", EditorStyles.boldLabel);
@@ -93,38 +122,6 @@ namespace Syy.GameViewSizeControl
                                 }
                             }
                             EditorGUILayout.LabelField(gameViewSize.baseText, GUILayout.Width(300));
-                            EditorGUILayout.LabelField(string.Format("{0} × {1}", gameViewSize.width, gameViewSize.height));
-                        }
-                    }
-                }
-
-                EditorGUILayout.Space();
-                EditorGUILayout.Space();
-                EditorGUILayout.Space();
-                EditorGUILayout.LabelField("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■", EditorStyles.boldLabel);
-                EditorGUILayout.LabelField("■■■REGISTERED■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■", EditorStyles.boldLabel);
-                EditorGUILayout.LabelField("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■", EditorStyles.boldLabel);
-                EditorGUILayout.LabelField("Quick change GameViewSize by click title", EditorStyles.boldLabel);
-                EditorGUILayout.Space();
-                if(customSizes.Length == 0)
-                {
-                    EditorGUILayout.LabelField("Nothing registered custom GameViewSize");
-                } 
-                foreach (var gameViewSize in customSizes)
-                {
-                    using (new EditorGUILayout.VerticalScope("ShurikenModuleTitle"))
-                    {
-                        using (new EditorGUILayout.HorizontalScope())
-                        {
-                            if (GUILayout.Button("Remove", EditorStyles.miniButton, GUILayout.Width(55)))
-                            {
-                                removeTargets.Add(gameViewSize);
-                            }
-                            if(GUILayout.Button(gameViewSize.baseText, EditorStyles.label, GUILayout.Width(300)))
-                            {
-                                GameViewSizeHelper.ChangeGameViewSize(selectedTab, gameViewSize);
-                            }
-                            // EditorGUILayout.LabelField(gameViewSize.baseText);
                             EditorGUILayout.LabelField(string.Format("{0} × {1}", gameViewSize.width, gameViewSize.height));
                         }
                     }
